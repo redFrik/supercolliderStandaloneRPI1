@@ -76,7 +76,7 @@ startup:
 * ``export `dbus-launch | grep ADDRESS` ``
 * ``export `dbus-launch | grep PID` ``
 * `jackd -P95 -dalsa -dhw:1 -p1024 -n3 -s -r44100 &` #edit -dhw to match your audio output. 0 is usually hdmi, and 1 the usb soundcard
-* `cd supercolliderStandaloneRPI2`
+* `cd supercolliderStandaloneRPI1`
 * `xvfb-run --auto-servernum ./sclang -a -l sclang.yaml`
 
 autostart
