@@ -14,7 +14,7 @@ open the terminal on the RPi and type...
 
 * `sudo apt-get update`
 * `sudo apt-get install libqt5webkit5 libqt5sensors5 libqt5positioning5 libcwiid-dev libfftw3-dev`
-* `git clone git://github.com/redFrik/supercolliderStandaloneRPI1 --depth 1`
+* `git clone https://github.com/redFrik/supercolliderStandaloneRPI1 --depth 1`
 * `mkdir -p ~/.config/SuperCollider`
 * `cp supercolliderStandaloneRPI1/sc_ide_conf_temp.yaml ~/.config/SuperCollider/sc_ide_conf.yaml`
 
@@ -85,6 +85,6 @@ autostart
 
 * `sudo apt-get install xvfb`
 * `crontab -e` #and add the following line to the end
-* `@reboot cd /home/pi/supercolliderStandaloneRPI1 && xvfb-run ./autostart.sh`
+  * `@reboot cd /home/pi/supercolliderStandaloneRPI1 && xvfb-run ./autostart.sh`
 
 Then edit the autostart script to load whichever file. By default it will load `mycode.scd`.
