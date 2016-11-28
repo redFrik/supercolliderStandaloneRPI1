@@ -1,9 +1,9 @@
 # supercolliderStandaloneRPI1
 Standalone for Raspberry Pi 1 Raspbian Jessie including the full IDE.
 
-This is the audio synthesis program [SuperCollider](http://github.com/supercollider/supercollider) (master branch commit 617f980, 21feb2016) compiled for armv6l.
+This is the audio synthesis program [SuperCollider](http://github.com/supercollider/supercollider) (3.8.0, commit 0947edd, 5nov2016) + [sc3-plugins](https://github.com/supercollider/sc3-plugins) (master, commit f1200cd, 8nov2016) compiled for rpi1 and rpi0.
 
-It was built using [this guide](http://supercollider.github.io/development/building-raspberrypi.html) on a **Raspberry Pi 1** model B under 2016-02-26-raspbian-jessie.img. It also works on the model A and **Raspberry Pi Zero**. For the **Raspberry Pi 2** and **Raspberry Pi 3** use [this repository](https://github.com/redFrik/supercolliderStandaloneRPI2).
+It was built using [this guide](http://supercollider.github.io/development/building-raspberrypi.html) on a **Raspberry Pi 1** model B under [2016-09-23-raspbian-jessie](http://raspberrypi.org/downloads/raspbian/) (Raspbian Jessie with Pixel). It also works on the model A and **Raspberry Pi Zero**. For the **Raspberry Pi 2** and **Raspberry Pi 3** use [this repository](https://github.com/redFrik/supercolliderStandaloneRPI2).
 
 The standalone structure is loosely based on [Miguel Negrão's template](https://github.com/miguel-negrao/scStandalone). This standalone is self-contained and all files are in one directory (except for the sc_ide_conf.yaml file - see below). It can coexist with the Raspbian bundled 3.6.6 version of SuperCollider used by Sonic Pi (i.e. no need to uninstall Sonic Pi and the two programs can even run simultaneously).
 
@@ -13,7 +13,7 @@ installation
 open the terminal on the RPi and type...
 
 * `sudo apt-get update`
-* `sudo apt-get install libqt5webkit5 libqt5sensors5 libqt5positioning5 libcwiid-dev libfftw3-dev`
+* `sudo apt-get install libqt5webkit5 libqt5sensors5 libqt5positioning5 libqt5concurrent5 libfftw3-bin            libcwiid-dev libfftw3-dev`
 * `git clone https://github.com/redFrik/supercolliderStandaloneRPI1 --depth 1`
 * `mkdir -p ~/.config/SuperCollider`
 * `cp supercolliderStandaloneRPI1/sc_ide_conf_temp.yaml ~/.config/SuperCollider/sc_ide_conf.yaml`
@@ -29,26 +29,25 @@ To run the full IDE first open a terminal window and type...
 
 Select the correct soundcard (under setup/interfaces) and then start jackd.
 
-Then double click the SuperColliderIDE desktop icon...
-
-![alt text](https://raw.githubusercontent.com/supercollider/supercollider/master/icons/sc_ide_48.png "SuperColliderIDE")
-
-SuperCollider IDE should start and run like normal - with scope, meter, plot, gui, animation, help, quarks etc.
-
-advanced
---
-
-if the desktop shortcut does not work or you want to start scide from the command line you do...
+Then open another terminal window and type...
 
 * `cd supercolliderStandaloneRPI1`
 * `export PATH=.:$PATH`
-* `./scide`
+* `scide`
 
-NOTE: the cd and export commands are necessary before starting scide as we need to use our standalone binaries and not the global Raspbian ones in /usr/bin/
+SuperCollider IDE should start and run like normal - with scope, meter, plot, gui, animation, help, quarks etc.
 
-NOTE: if the scide desktop shortcut is missing the typical icon (perhaps because you uninstalled the bundled sc), you can install it manually like this...
+KNOWN ISSUES and TODO: help system and more is not working if scide is started via desktop icon
 
-* `sudo curl -o /usr/share/pixmaps/sc_ide.svg https://raw.githubusercontent.com/supercollider/supercollider/master/icons/sc_ide.svg`
+autostart
+--
+
+* `sudo apt-get install xvfb`
+* `crontab -e` #and add the following line to the end
+* `@reboot cd /home/pi/supercolliderStandaloneRPI1 && xvfb-run ./autostart.sh`
+* `sudo reboot` #and supercollider should automatically start after a while and play some beating sine tones.
+
+Then edit the autostart script to load whichever file. By default it will load `mycode.scd`.
 
 headless
 --
@@ -56,7 +55,7 @@ headless
 To run sclang+scsynth only from ssh...
 
 * `export DISPLAY=:0.0`
-* `jackd -P95 -dalsa -dhw:1 -p1024 -n3 -s -r44100 &` #edit -dhw to match your audio output. 0 is usually hdmi, and 1 the usb soundcard
+* `jackd -P75 -dalsa -dhw:1 -p1024 -n3 -s -r44100 &` #edit -dhw to match your audio output. 0 is usually hdmi, and 1 the usb soundcard
 * `cd supercolliderStandaloneRPI1`
 * `./sclang -a -l sclang.yaml`
 
@@ -69,22 +68,23 @@ The standalone also works under jessie-lite if the following additional steps ar
 
 installation:
 
-* `sudo apt-get install git dbus-x11 xvfb jackd2` #enable realtime when asked
+* `sudo apt-get install git libcwiid1 libasound2-dev libsamplerate0-dev libsndfile1-dev libreadline-dev xvfb`
+* `git clone git://github.com/jackaudio/jack2.git --depth 1`
+* `cd jack2`
+* `./waf configure --alsa`
+* `./waf build`
+* `sudo ./waf install`
+* `sudo ldconfig`
+* `cd ..`
+* `rm -rf jack2`
+* `sudo nano /etc/security/limits.conf` #and add the following two lines at the end
+  * `@audio - memlock 256000`
+  * `@audio - rtprio 75`
+* `nano supercolliderStandaloneRPI1/autostart.sh` #and change the jackd path to `/usr/local/bin/jackd`
+* `sudo reboot`
 
 startup:
 
-* `export DISPLAY=:0.0`
-* ``export `dbus-launch | grep ADDRESS` ``
-* ``export `dbus-launch | grep PID` ``
-* `jackd -P95 -dalsa -dhw:1 -p1024 -n3 -s -r44100 &` #edit -dhw to match your audio output. 0 is usually hdmi, and 1 the usb soundcard
+* `jackd -P75 -dalsa -dhw:1 -p1024 -n3 -s -r44100 &` #edit -dhw to match your audio output. 0 is usually hdmi, and 1 the usb soundcard
 * `cd supercolliderStandaloneRPI1`
 * `xvfb-run --auto-servernum ./sclang -a -l sclang.yaml`
-
-autostart
---
-
-* `sudo apt-get install xvfb`
-* `crontab -e` #and add the following line to the end
-  * `@reboot cd /home/pi/supercolliderStandaloneRPI1 && xvfb-run ./autostart.sh`
-
-Then edit the autostart script to load whichever file. By default it will load `mycode.scd`.
