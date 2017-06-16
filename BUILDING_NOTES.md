@@ -15,6 +15,8 @@ First build and install SuperCollider on a RPi1 (or RPi0) following the instruct
 * `curl -o share/user/archive.sctxar https://raw.githubusercontent.com/redFrik/supercolliderStandaloneRPI1/master/share/user/archive.sctxar`
 * `curl -o sclang.yaml https://raw.githubusercontent.com/redFrik/supercolliderStandaloneRPI1/master/sclang.yaml`
 * `curl -o autostart.sh https://raw.githubusercontent.com/redFrik/supercolliderStandaloneRPI1/master/autostart.sh`
+* `curl -o run.sh https://raw.githubusercontent.com/redFrik/supercolliderStandaloneRPI1/master/run.sh`
+* `curl -o share/system/sc_ide_32.png https://raw.githubusercontent.com/redFrik/supercolliderStandaloneRPI1/master/share/system/sc_ide_32.png`
 
 Now this directory should contain what is needed to run ScIDE standalone (if started as in the README.md). Copy it to another machine with the same system and try.
 
