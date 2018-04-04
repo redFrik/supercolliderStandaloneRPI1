@@ -1,7 +1,7 @@
 # supercolliderStandaloneRPI1
 Standalone for Raspberry Pi 1 or Zero with Raspbian Stretch including the full IDE.
 
-This is the audio synthesis program [SuperCollider](http://github.com/supercollider/supercollider) (3.9.1, commit 6aba4ce, 3apr2018) + [sc3-plugins](https://github.com/supercollider/sc3-plugins) (master, commit 9307b41, 2feb2018) compiled for rpi1 and rpi0.
+This is the audio synthesis program [SuperCollider](http://github.com/supercollider/supercollider) (3.9.2, commit 6aba4ce, 3apr2018) + [sc3-plugins](https://github.com/supercollider/sc3-plugins) (master, commit 9307b41, 2feb2018) compiled for rpi1 and rpi0.
 
 It was built using [this guide](http://supercollider.github.io/development/building-raspberrypi.html) on a **Raspberry Pi Zero** under [2018-03-13-raspbian-stretch](http://raspberrypi.org/downloads/raspbian/) (Raspbian Stretch with Desktop). It also works on the **Raspberry Pi 1** model A and B.
 For **Raspberry Pi 2** and **Raspberry Pi 3** use [this repository](https://github.com/redFrik/supercolliderStandaloneRPI2).
