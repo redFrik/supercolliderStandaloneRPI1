@@ -1,7 +1,7 @@
 # supercolliderStandaloneRPI1
 Standalone for Raspberry Pi 1 or Zero with Raspbian Stretch including the full IDE.
 
-This is the audio synthesis program [SuperCollider](http://github.com/supercollider/supercollider) (3.9.2, commit 6aba4ce, 3apr2018) + [sc3-plugins](https://github.com/supercollider/sc3-plugins) (master, commit 9307b41, 2feb2018) compiled for rpi1 and rpi0.
+This is the audio synthesis program [SuperCollider](http://github.com/supercollider/supercollider) (3.9.3, commit f61c21d, 6apr2018) + [sc3-plugins](https://github.com/supercollider/sc3-plugins) (master, commit 9307b41, 2feb2018) compiled for rpi1 and rpi0.
 
 It was built using [this guide](http://supercollider.github.io/development/building-raspberrypi.html) on a **Raspberry Pi Zero** under [2018-03-13-raspbian-stretch](http://raspberrypi.org/downloads/raspbian/) (Raspbian Stretch with Desktop). It also works on the **Raspberry Pi 1** model A and B.
 For **Raspberry Pi 2** and **Raspberry Pi 3** use [this repository](https://github.com/redFrik/supercolliderStandaloneRPI2).
@@ -18,6 +18,7 @@ open the terminal on the RPi and type...
 * `sudo apt-get update`
 * `sudo apt-get upgrade`
 * `sudo apt-get dist-upgrade`
+* `sudo apt-get update`
 * `sudo apt-get install libqt5webkit5 libqt5sensors5 libqt5positioning5 libfftw3-bin libcwiid1`
 * `git clone https://github.com/redFrik/supercolliderStandaloneRPI1 --depth 1`
 * `mkdir -p ~/.config/SuperCollider`
@@ -82,9 +83,9 @@ To run sclang+scsynth only from ssh...
 
 * `export DISPLAY=:0.0`
 * `cd supercolliderStandaloneRPI1`
-* `./sclang -a -l sclang.yaml`
+* `./sclang -a -l ~/supercolliderStandaloneRPI1/sclang.yaml`
 
-NOTE: one can also specify a .scd file to load when starting sclang like this: `./sclang -a -l sclang.yaml mycode.scd`
+NOTE: one can also specify a .scd file to load when starting sclang like this: `./sclang -a -l ~/supercolliderStandaloneRPI1/sclang.yaml mycode.scd`
 
 - - -
 
@@ -114,4 +115,4 @@ installation:
 startup:
 
 * `cd supercolliderStandaloneRPI1`
-* `xvfb-run --auto-servernum ./sclang -a -l sclang.yaml`
+* `xvfb-run --auto-servernum ./sclang -a -l ~/supercolliderStandaloneRPI1/sclang.yaml`
