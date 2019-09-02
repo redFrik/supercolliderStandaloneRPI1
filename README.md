@@ -76,7 +76,7 @@ autostart
 
 * `sudo apt-get install xvfb`
 * `crontab -e` #and add the following line to the end
-* `@reboot cd /home/pi/supercolliderStandaloneRPI1 && xvfb-run ./autostart.sh`
+  * `@reboot cd /home/pi/supercolliderStandaloneRPI1 && xvfb-run ./autostart.sh`
 * `sudo reboot` #and supercollider should automatically start after a while and play some beating sine tones.
 
 Then edit the autostart script to load whichever file. By default it will load `mycode.scd`.
@@ -114,10 +114,11 @@ installation:
 * `cd ..`
 * `rm -rf jack2`
 * `sudo nano /etc/security/limits.conf` #and add the following two lines at the end
-* `@audio - memlock 256000`
-* `@audio - rtprio 75`
+  * `@audio - memlock 256000`
+  * `@audio - rtprio 75`
 * `nano ~/.jackdrc` #and add the following (use `-dhw:1` for usb soundcard)
-* `/usr/local/bin/jackd -P75 -dalsa -dhw:0 -r44100 -p1024 -n3`
+  * `/usr/local/bin/jackd -P75 -dalsa -dhw:0 -r44100 -p1024 -n3`
+* `cd ~; git clone https://github.com/redFrik/supercolliderStandaloneRPI1 --depth 1`
 * `sudo reboot`
 
 startup:
