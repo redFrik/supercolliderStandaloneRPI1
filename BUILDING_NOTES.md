@@ -1,6 +1,20 @@
 Instructions for building these binaries and set up a similar standalone repository...
 
-First build and install SuperCollider and sc3-plugins on a RPi0 (or RPi1) following the instructions in the ScIDE section [here](https://supercollider.github.io/development/building-raspberrypi.html). One can also use an existing sc install assuming all the files are in their default directories.
+First build and install SuperCollider and sc3-plugins on a RPi0 (or RPi1) following the [official build instructions for the ScIDE](https://github.com/supercollider/supercollider/blob/develop/README_RASPBERRY_PI.md). One can also use an existing sc install assuming all the files are in their default directories.
+
+(  
+sc3-plugins are built and installed like this...
+
+```
+git clone --recursive https://github.com/supercollider/sc3-plugins.git
+cd sc3-plugins
+#git checkout 3.10  #optional select version
+mkdir build && cd build
+cmake -DCMAKE_BUILD_TYPE="Release" -DSUPERNOVA=OFF -DNATIVE=ON -DSC_PATH=../../supercollider/ ..
+make
+sudo make install
+```
+)
 
 * `mkdir supercolliderStandaloneRPI1 && cd supercolliderStandaloneRPI1`
 * `cp /usr/local/bin/sc* .` #this should copy scide, sclang and scsynth
@@ -28,7 +42,7 @@ publish
 My own additional notes for this git repository...
 
 * note which git commit was used in README.md
-* note which raspbian image was used in README.md
+* note which system image was used in README.md
 * copy the files over to laptop...
   * `cd supercolliderStandaloneRPI1`
   * `scp pi@raspberrypi.local:supercolliderStandaloneRPI1/sc* .`
