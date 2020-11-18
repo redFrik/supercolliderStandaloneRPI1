@@ -1,11 +1,11 @@
 # supercolliderStandaloneRPI1
 Standalone for Raspberry Pi 1 or Zero including the full IDE
 
-This is the audio synthesis program [SuperCollider](https://github.com/supercollider/supercollider) version 3.11.1 (branch 3.11, commit 49b3094, 25aug2020) + [sc3-plugins](https://github.com/supercollider/sc3-plugins) (branch master, commit f3d5635, 24jul2020) compiled for **Raspberry Pi 1** and **Raspberry Pi Zero**.
+This is the audio synthesis program [SuperCollider](https://github.com/supercollider/supercollider) version 3.11.2 (branch 3.11, commit 6cce82b, 13nov2020) + [sc3-plugins](https://github.com/supercollider/sc3-plugins) (branch master, commit 209cf4f, 17nov2020) compiled for **Raspberry Pi 1** and **Raspberry Pi Zero**.
 
 For **Raspberry Pi 2**, **Raspberry Pi 3** and **Raspberry Pi 4** use [this repository](https://github.com/redFrik/supercolliderStandaloneRPI2).
 
-The standalone was built using [this guide](https://github.com/supercollider/supercollider/blob/develop/README_RASPBERRY_PI.md) and tested to run under [Raspberry Pi OS (32-bit) with desktop](https://www.raspberrypi.org/downloads/raspberry-pi-os/) (2020-05-27-raspios-buster-armhf) and under Raspberry Pi OS (32-bit) Lite (2020-05-27-raspios-buster-lite-armhf).
+The standalone was built using [this guide](https://github.com/supercollider/supercollider/blob/develop/README_RASPBERRY_PI.md) and tested to run under [Raspberry Pi OS (32-bit) with desktop](https://www.raspberrypi.org/downloads/raspberry-pi-os/) (2020-08-20-raspios-buster-armhf) and under Raspberry Pi OS (32-bit) Lite (2020-08-20-raspios-buster-armhf-lite).
 
 A quick (4:33) screencast showing the installation in realtime can be seen here... https://vimeo.com/397466041
 
@@ -116,7 +116,7 @@ installation:
 * `rm -rf jack2`
 * `sudo sh -c "echo @audio - memlock 256000 >> /etc/security/limits.conf"`
 * `sudo sh -c "echo @audio - rtprio 75 >> /etc/security/limits.conf"`
-* `echo /usr/local/bin/jackd -P75 -p16 -dalsa -dhw:0 -r44100 -p1024 -n3 > ~/.jackdrc` #use -dhw:1 for usb soundcard
+* `echo /usr/local/bin/jackd -P75 -p16 -dalsa -dhw:0 -r44100 -p1024 -n3 > ~/.jackdrc` #use -dhw:1 for USB soundcard
 * `cd ~; git clone https://github.com/redFrik/supercolliderStandaloneRPI1 --depth 1`
 * `sudo reboot`
 
