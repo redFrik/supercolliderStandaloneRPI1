@@ -1,7 +1,7 @@
 # supercolliderStandaloneRPI1
 Standalone for Raspberry Pi 1 or Zero including the full IDE
 
-This is the audio synthesis program [SuperCollider](https://github.com/supercollider/supercollider) version 3.11.2 (branch 3.11, commit 6cce82b, 13nov2020) + [sc3-plugins](https://github.com/supercollider/sc3-plugins) (branch master, commit 209cf4f, 17nov2020) compiled for **Raspberry Pi 1** and **Raspberry Pi Zero**.
+This is the audio synthesis program [SuperCollider](https://github.com/supercollider/supercollider) version 3.12.0 (branch main, commit 028ff1b, 03aug2021) + [sc3-plugins](https://github.com/supercollider/sc3-plugins) (branch main, commit dca5c0b, 06aug2021) compiled for **Raspberry Pi 1** and **Raspberry Pi Zero**.
 
 For **Raspberry Pi 2**, **Raspberry Pi 3** and **Raspberry Pi 4** use [this repository](https://github.com/redFrik/supercolliderStandaloneRPI2).
 
@@ -21,8 +21,6 @@ _(this assumes you have done all the usual initialisation... burned the disk ima
 open the terminal on the RPi and type...
 
 * `sudo apt-get update`
-* `sudo apt-get upgrade`
-* `sudo apt-get dist-upgrade`
 * `sudo apt-get install qjackctl libqt5quick5 libqt5opengl5`
 * `git clone https://github.com/redFrik/supercolliderStandaloneRPI1 --depth 1`
 * `mkdir -p ~/.config/SuperCollider`
@@ -103,11 +101,9 @@ The standalone also works under Raspberry Pi OS Lite but the installation proces
 installation:
 
 * `sudo apt-get update`
-* `sudo apt-get upgrade`
-* `sudo apt-get dist-upgrade`
 * `sudo apt-get install libqt5quick5 libqt5opengl5 libqt5printsupport5 libqt5sql5 git libasound2-dev libsamplerate0-dev libsndfile1-dev libreadline-dev`
 * `sudo apt remove '*jack*'`
-* `git clone git://github.com/jackaudio/jack2.git --depth 1`
+* `git clone --branch master --single-branch git://github.com/jackaudio/jack2.git`
 * `cd jack2`
 * `./waf configure --alsa`
 * `./waf build`
