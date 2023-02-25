@@ -6,6 +6,11 @@ First build and install SuperCollider and sc3-plugins on a RPi0 (or RPi1) follow
 sc3-plugins are built and installed like this...
 
 ```
+sudo dphys-swapfile swapoff
+sudo nano /etc/dphys-swapfile  #set CONF_SWAPSIZE to 500
+sudo dphys-swapfile setup
+sudo dphys-swapfile swapon
+sudo reboot
 git clone --recursive https://github.com/supercollider/sc3-plugins.git
 cd sc3-plugins
 git checkout main
@@ -45,7 +50,7 @@ My own additional notes for this git repository...
 * note which system image was used in README.md
 * copy the files over to laptop...
   * `cd supercolliderStandaloneRPI1`
-  * `scp pi@raspberrypi.local:supercolliderStandaloneRPI1/sc* .`
+  * `scp pi@raspberrypi.local:supercolliderStandaloneRPI1/sc\* .`
   * `rm -rf plugins`
   * `scp -r pi@raspberrypi.local:supercolliderStandaloneRPI1/plugins .`
   * `rm -rf share`
