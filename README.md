@@ -1,11 +1,13 @@
 # supercolliderStandaloneRPI1
-Standalone for Raspberry Pi 1 or Zero including the full IDE
+Standalone for Raspberry Pi 1 and Zero including the full IDE
 
-This is the audio synthesis program [SuperCollider](https://github.com/supercollider/supercollider) version 3.13.0 (branch main, commit 3188503, 20feb2023) + [sc3-plugins](https://github.com/supercollider/sc3-plugins) (branch main, commit ab7f94e, 24feb2023) compiled for **Raspberry Pi 1** and **Raspberry Pi Zero**.
+This is the audio synthesis program [SuperCollider](https://github.com/supercollider/supercollider) version 3.13.0 (branch main, commit 3188503, 19feb2023) + [sc3-plugins](https://github.com/supercollider/sc3-plugins) (branch main, commit ab7f94e, 24feb2023) compiled for **Raspberry Pi 1** and **Raspberry Pi Zero**.
 
-The standalone was built on a rpi zero using [this guide](https://github.com/supercollider/supercollider/blob/develop/README_RASPBERRY_PI.md) and tested to run under [Raspberry Pi OS](https://www.raspberrypi.com/software/operating-systems/) 32-bit with desktop (2022-09-22-raspios-bullseye-armhf) and Lite (2022-09-22-raspios-bullseye-armhf-lite).
+The standalone was built on a RPi Zero using [this guide](https://github.com/supercollider/supercollider/blob/develop/README_RASPBERRY_PI.md) and tested to run under [Raspberry Pi OS](https://www.raspberrypi.com/software/operating-systems/) 32-bit with desktop (2022-09-22-raspios-bullseye-armhf) and Lite (2022-09-22-raspios-bullseye-armhf-lite).
 
 For 32-bit Legacy (raspios buster, desktop and Lite) download the previous release [sc3.12.0](https://github.com/redFrik/supercolliderStandaloneRPI1/releases/tag/v1.9) and follow the instructions in that README instead.
+
+For 64-bit (**RPi4, Zero2**...) use [this repository](https://github.com/redFrik/supercolliderStandaloneRPI64/).
 
 For **Raspberry Pi 2** and **Raspberry Pi 3** use [this repository](https://github.com/redFrik/supercolliderStandaloneRPI2).
 
